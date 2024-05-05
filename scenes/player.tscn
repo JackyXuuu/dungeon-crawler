@@ -5,10 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://bixlctt8hwra6" path="res://assets/8-direction character/images/Characters/Civilian1(black)_Idle(Weapon1).png" id="2_wxxqd"]
 [ext_resource type="Texture2D" uid="uid://kpv14n3f0d4q" path="res://assets/8-direction character/images/Characters/Civilian1(black)_Move(Weapon1).png" id="4_mv2i1"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0eiw7"]
-atlas = ExtResource("2_wxxqd")
-region = Rect2(0, 0, 52, 52)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_qbvjs"]
 atlas = ExtResource("1_tpjb7")
 region = Rect2(0, 74, 50, 37)
@@ -72,6 +68,10 @@ region = Rect2(104, 0, 52, 52)
 [sub_resource type="AtlasTexture" id="AtlasTexture_n1dqt"]
 atlas = ExtResource("2_wxxqd")
 region = Rect2(52, 0, 52, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0eiw7"]
+atlas = ExtResource("2_wxxqd")
+region = Rect2(0, 0, 52, 52)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d7c8b"]
 atlas = ExtResource("2_wxxqd")
@@ -209,14 +209,6 @@ region = Rect2(156, 364, 52, 52)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0eiw7")
-}],
-"loop": true,
-"name": &" idle_6",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_qbvjs")
 }, {
 "duration": 1.0,
@@ -246,9 +238,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rtnds")
 }],
-"loop": true,
+"loop": false,
 "name": &"dodge",
-"speed": 10.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -296,6 +288,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_5",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0eiw7")
+}],
+"loop": true,
+"name": &"idle_6",
 "speed": 5.0
 }, {
 "frames": [{
@@ -453,8 +453,10 @@ script = ExtResource("1_qc5g1")
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_mvvdl")
 animation = &"dodge"
-autoplay = " idle_6"
+autoplay = "idle_6"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_mfh6n")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

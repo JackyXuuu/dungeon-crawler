@@ -30,7 +30,6 @@ func _physics_process(delta):
 	
 func move_state(delta):
 	input = get_input()
-	
 	if input == Vector2.ZERO:
 		var direction_id = int(8.0 * (last_direction.rotated(PI / 8.0).angle() + PI) / TAU)
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
@@ -41,7 +40,6 @@ func move_state(delta):
 		velocity = velocity.move_toward(input * MAXSPEED, ACCELERATION * delta)
 		move_and_slide()
 		animated_sprite.play(str("run_", direction_id))
-	print(last_direction)
 	if input != Vector2.ZERO:
 		velocity = velocity.move_toward(input * MAXSPEED, ACCELERATION * delta)
 	else:
@@ -53,12 +51,13 @@ func move_state(delta):
 		state = DODGE
 
 func dodge_state(delta):
-	velocity = dodge_vector * DODGESPEED
+	velocity = last_direction * DODGESPEED
 	move()
 	animated_sprite.play("dodge")
-	await animated_sprite.animation_finished()
-	state = MOVE
 	
 func move():
 	move_and_slide()
 
+func _on_animated_sprite_2d_animation_finished():
+	state = MOVE
+	velocity = velocity*0.5
