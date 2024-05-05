@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://br37am0h2l2kc"]
+
+[ext_resource type="PackedScene" uid="uid://csvv76r13o38i" path="res://scenes/player.tscn" id="1_7j4kw"]
+[ext_resource type="PackedScene" uid="uid://crdpmb2sl0o3q" path="res://scenes/isometic_tile_map.tscn" id="1_ejvme"]
+
+[node name="Game" type="Node2D"]
+
+[node name="IsometicTileMap" parent="." instance=ExtResource("1_ejvme")]
+
+[node name="Player" parent="." instance=ExtResource("1_7j4kw")]
+position = Vector2(0, 1)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, -15)
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
