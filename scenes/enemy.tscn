@@ -1,9 +1,10 @@
-[gd_scene load_steps=64 format=3 uid="uid://blxltvb8xes8y"]
+[gd_scene load_steps=66 format=3 uid="uid://blxltvb8xes8y"]
 
-[ext_resource type="Script" path="res://scenes/enemy.gd" id="1_2yt8o"]
+[ext_resource type="Script" path="res://enemy.gd" id="1_2yt8o"]
 [ext_resource type="Texture2D" uid="uid://ds4y8tmrbuokr" path="res://assets/character/NightBorne.png" id="1_17oot"]
-[ext_resource type="PackedScene" uid="uid://co0em6g52bj8b" path="res://scenes/hurtbox.tscn" id="3_kwley"]
-[ext_resource type="PackedScene" uid="uid://icxkajnv4m2t" path="res://scenes/player_detection_zone.tscn" id="4_k52cx"]
+[ext_resource type="PackedScene" uid="uid://c8rhl1keb567f" path="res://overlap/hurtbox.tscn" id="3_kwley"]
+[ext_resource type="PackedScene" path="res://scenes/player_detection_zone.tscn" id="4_k52cx"]
+[ext_resource type="PackedScene" uid="uid://cr55mcfp6m8ka" path="res://overlap/hitbox.tscn" id="5_878mt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w4mkk"]
 atlas = ExtResource("1_17oot")
@@ -430,7 +431,13 @@ height = 18.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_as26k"]
 radius = 41.0488
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2knnx"]
+radius = 14.0
+height = 28.0
+
 [node name="enemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_2yt8o")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -439,10 +446,12 @@ animation = &"attack"
 frame_progress = 0.934882
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(4, 13)
+position = Vector2(4, 9)
 shape = SubResource("CapsuleShape2D_v3nhk")
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_kwley")]
+collision_layer = 4
+collision_mask = 3
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2(4, 9)
@@ -454,7 +463,17 @@ shape = SubResource("CapsuleShape2D_cgbfh")
 shape = SubResource("CircleShape2D_as26k")
 debug_color = Color(0, 0.694118, 0.701961, 0.101961)
 
+[node name="Hitbox" parent="." instance=ExtResource("5_878mt")]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(1, 11)
+shape = SubResource("CapsuleShape2D_2knnx")
+debug_color = Color(0.919209, 0.283018, 1.92523e-07, 0.42)
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 
 [editable path="Hurtbox"]
 [editable path="PlayerDetectionZone"]
+[editable path="Hitbox"]

@@ -8,8 +8,12 @@ const FRICTION = 100
 enum {
 	MOVE,
 	DODGE,
-	ATTACK
+	ATTACK,
+	DEAD
 }
+
+# PLAYER STATS
+var HEALTH = 100
 
 var state = MOVE
 var input = Vector2.ZERO
@@ -18,12 +22,16 @@ var last_direction = input
 var last_mouse_position = Vector2()
 
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var animated_player = $AnimationPlayer
 
 func get_input():
 	input = Input.get_vector("move_left","move_right","move_up","move_down")
 	return input.normalized()
 
 func _physics_process(delta):
+	if HEALTH < 0:
+		animated_sprite.play("death")
+		state = DEAD
 	match state:
 		MOVE:
 			move_state(delta)
@@ -63,7 +71,7 @@ func attack_state(delta):
 	# Update last_direction to match the attack direction
 	last_direction = Vector2(cos(direction_id * (PI / 4)), sin(direction_id * (PI / 4)))
 	velocity = Vector2.ZERO
-	animated_sprite.play(str("attack_", direction_id))
+	animated_player.play(str("attack_", direction_id))
 	
 func move():
 	move_and_slide()
@@ -72,3 +80,12 @@ func _on_animated_sprite_2d_animation_finished():
 	state = MOVE
 	if animated_sprite.animation == "dodge":
 		velocity = velocity*0.5
+
+
+func _on_animation_player_animation_finished(anim_name):
+	state = MOVE
+
+
+func _on_hurtbox_area_entered(area):
+	HEALTH -= 50
+	print_debug("player hurt")

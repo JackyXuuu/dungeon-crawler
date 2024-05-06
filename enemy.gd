@@ -44,9 +44,11 @@ func _physics_process(delta):
 
 # detect player if they enter their detection zone
 func seek_player():
-	if playerDetectionZone.can_see_player():
-		state = CHASE
+	pass
+	#if playerDetectionZone.can_see_player():
+		#state = CHASE
 
 # connect hurtbox to the enemy
 func _on_hurtbox_area_entered(area):
-	knockback = area.knockback_vector * 100
+	print_debug("enemy hit")
+	#knockback = area.knockback_vector * 100
