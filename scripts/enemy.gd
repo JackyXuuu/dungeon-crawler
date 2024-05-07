@@ -4,6 +4,7 @@ extends CharacterBody2D
 var ACCELERATION = 300
 var MAX_SPEED = 50
 var FRICTION = 200
+var KNOCKBACK_VAL = 100
 
 enum {
 	IDLE,
@@ -22,7 +23,7 @@ var state = IDLE
 
 # When enemy is hit, knock them back
 func _physics_process(delta):
-	knockback = knockback.move_toward(Vector2.ZERO, 150 * delta)
+	knockback = knockback.move_toward(Vector2.ZERO, FRICTION * delta)
 	move_and_slide()
 	
 	match state:
@@ -51,4 +52,4 @@ func seek_player():
 # connect hurtbox to the enemy
 func _on_hurtbox_area_entered(area):
 	print_debug("enemy hit")
-	#knockback = area.knockback_vector * 100
+	knockback = area.knockback_vector * KNOCKBACK_VAL
