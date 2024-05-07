@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://ckaf70fk5847w"]
+
+[ext_resource type="Texture2D" uid="uid://ds4y8tmrbuokr" path="res://assets/character/NightBorne.png" id="1_gd7su"]
+[ext_resource type="Script" path="res://scripts/Effect.gd" id="2_k8quf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60lgj"]
+atlas = ExtResource("1_gd7su")
+region = Rect2(1040, 320, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nq0g5"]
+atlas = ExtResource("1_gd7su")
+region = Rect2(1200, 320, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qdp4"]
+atlas = ExtResource("1_gd7su")
+region = Rect2(1360, 320, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xt21"]
+atlas = ExtResource("1_gd7su")
+region = Rect2(1520, 320, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ugmw8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60lgj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nq0g5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qdp4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xt21")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="player_hit_effect" type="AnimatedSprite2D"]
+scale = Vector2(0.525, 0.525)
+sprite_frames = SubResource("SpriteFrames_ugmw8")
+frame = 3
+frame_progress = 1.0
+script = ExtResource("2_k8quf")
