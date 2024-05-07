@@ -25,6 +25,7 @@ const EnemyDeathEffect = preload("res://scenes/enemy_death_effect.tscn")
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, FRICTION * delta)
 	move_and_slide()
+	# test comment
 	
 	match state:
 		IDLE:
