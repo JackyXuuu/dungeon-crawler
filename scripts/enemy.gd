@@ -18,6 +18,7 @@ var state = IDLE
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var playerDetectionZone = $PlayerDetectionZone
+@onready var stats = $enemy_stats
 
 # everything below relates to getting hit (5 - 15)
 
@@ -52,4 +53,8 @@ func seek_player():
 # connect hurtbox to the enemy
 func _on_hurtbox_area_entered(area):
 	print_debug("enemy hit")
+	stats.health -= area.damage
 	knockback = area.knockback_vector * KNOCKBACK_VAL
+
+func _on_enemy_stats_no_health():
+	queue_free()

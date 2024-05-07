@@ -23,7 +23,7 @@ var last_mouse_position = Vector2()
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var animated_player = $AnimationPlayer
-@onready var attack_hitbox = $Hitbox
+@onready var attack_hitbox = $Attack_Hitbox
 
 func get_input():
 	input = Input.get_vector("move_left","move_right","move_up","move_down")

@@ -440,9 +440,6 @@ height = 28.0
 collision_layer = 4
 script = ExtResource("1_4jwkk")
 
-[node name="enemy_stats" parent="." instance=ExtResource("2_hlnr7")]
-MAX_HEALTH = 100
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_i751r")
 animation = &"attack"
@@ -475,7 +472,11 @@ position = Vector2(1, 11)
 shape = SubResource("CapsuleShape2D_2knnx")
 debug_color = Color(0.919209, 0.283018, 1.92523e-07, 0.42)
 
+[node name="enemy_stats" parent="." instance=ExtResource("2_hlnr7")]
+MAX_HEALTH = 3
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="no_health" from="enemy_stats" to="." method="_on_enemy_stats_no_health"]
 
 [editable path="Hurtbox"]
 [editable path="PlayerDetectionZone"]
