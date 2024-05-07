@@ -440,10 +440,9 @@ height = 28.0
 collision_layer = 4
 script = ExtResource("1_4jwkk")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="EnemyMovements" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_i751r")
-animation = &"attack"
-frame_progress = 0.934882
+animation = &"death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4, 9)

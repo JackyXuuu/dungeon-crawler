@@ -1,0 +1,130 @@
+[gd_scene load_steps=20 format=3 uid="uid://b0y4m55i1vjis"]
+
+[ext_resource type="Texture2D" uid="uid://ds4y8tmrbuokr" path="res://assets/character/NightBorne.png" id="1_537xf"]
+[ext_resource type="Script" path="res://scripts/Effect.gd" id="1_wagl4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isxex"]
+atlas = ExtResource("1_537xf")
+region = Rect2(0, 320, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxoan"]
+atlas = ExtResource("1_537xf")
+region = Rect2(80, 320, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxai4"]
+atlas = ExtResource("1_537xf")
+region = Rect2(160, 320, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_np67k"]
+atlas = ExtResource("1_537xf")
+region = Rect2(240, 320, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2yynd"]
+atlas = ExtResource("1_537xf")
+region = Rect2(320, 320, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acrci"]
+atlas = ExtResource("1_537xf")
+region = Rect2(960, 320, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqivw"]
+atlas = ExtResource("1_537xf")
+region = Rect2(1040, 320, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bk0jw"]
+atlas = ExtResource("1_537xf")
+region = Rect2(1120, 320, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fm8k8"]
+atlas = ExtResource("1_537xf")
+region = Rect2(1200, 320, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yntl8"]
+atlas = ExtResource("1_537xf")
+region = Rect2(1280, 320, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rus3y"]
+atlas = ExtResource("1_537xf")
+region = Rect2(1360, 320, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6njen"]
+atlas = ExtResource("1_537xf")
+region = Rect2(1440, 320, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hw1k1"]
+atlas = ExtResource("1_537xf")
+region = Rect2(1520, 320, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xm48"]
+atlas = ExtResource("1_537xf")
+region = Rect2(1600, 320, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fmnw"]
+atlas = ExtResource("1_537xf")
+region = Rect2(1680, 320, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbw1m"]
+atlas = ExtResource("1_537xf")
+region = Rect2(1760, 320, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a60v3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_isxex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxoan")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxai4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_np67k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2yynd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_acrci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqivw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bk0jw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fm8k8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yntl8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rus3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6njen")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hw1k1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xm48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fmnw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbw1m")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EnemyDeathEffect" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_a60v3")
+frame = 15
+frame_progress = 1.0
+script = ExtResource("1_wagl4")

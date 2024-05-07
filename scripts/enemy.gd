@@ -13,12 +13,12 @@ enum {
 }
 
 var knockback = Vector2.ZERO
-
 var state = IDLE
 
-@onready var animated_sprite = $AnimatedSprite2D
+@onready var animated_sprite = $EnemyMovements
 @onready var playerDetectionZone = $PlayerDetectionZone
 @onready var stats = $enemy_stats
+const EnemyDeathEffect = preload("res://scenes/enemy_death_effect.tscn")
 
 # everything below relates to getting hit (5 - 15)
 
@@ -58,3 +58,6 @@ func _on_hurtbox_area_entered(area):
 
 func _on_enemy_stats_no_health():
 	queue_free()
+	var enemyDeathEffect = EnemyDeathEffect.instantiate()
+	get_parent().add_child(enemyDeathEffect)
+	enemyDeathEffect.global_position = global_position
