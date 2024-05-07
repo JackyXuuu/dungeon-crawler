@@ -1,10 +1,9 @@
 extends CharacterBody2D
 
-# export 3 lines below later (export var)
-var ACCELERATION = 300
-var MAX_SPEED = 50
-var FRICTION = 200
-var KNOCKBACK_VAL = 100
+@export var ACCELERATION = 300
+@export var MAX_SPEED = 20
+@export var FRICTION = 200
+@export var KNOCKBACK_VAL = 100
 
 enum {
 	IDLE,
@@ -38,17 +37,20 @@ func _physics_process(delta):
 			
 		CHASE:
 			var player = playerDetectionZone.player
-			if player != null:				
+			if player != null:
 				var direction = position.direction_to(player.global_position)
-				velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION)
-		
+				velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
+			else:
+				# THIS BEHAVIOUR IS TEMPORARY. WE ARE CURRENTLY STOPPING THE ENEMY COMPLETELY
+				# WHEN PLAYER EXITS DETECTION ZONE. MAY WANT TO CHANGE IN THE FUTURE IF WE WANT
+				# ENEMY TO KEEP ON CHASING ONCE IT DETECTS THE PLAYER (CHASE INFINITELY)
+				state = IDLE
 	move_and_slide()
 
 # detect player if they enter their detection zone
 func seek_player():
-	pass
-	#if playerDetectionZone.can_see_player():
-		#state = CHASE
+	if playerDetectionZone.can_see_player():
+		state = CHASE
 
 # connect hurtbox to the enemy
 func _on_hurtbox_area_entered(area):

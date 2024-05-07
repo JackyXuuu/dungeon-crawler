@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://icxkajnv4m2t"]
+[gd_scene load_steps=2 format=3 uid="uid://bghi0jdw8j1t7"]
 
-[ext_resource type="Script" path="res://scenes/player_detection_zone.gd" id="1_qnucd"]
+[ext_resource type="Script" path="res://scripts/player_detection_zone.gd" id="1_hcwbf"]
 
 [node name="PlayerDetectionZone" type="Area2D"]
-script = ExtResource("1_qnucd")
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_hcwbf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
