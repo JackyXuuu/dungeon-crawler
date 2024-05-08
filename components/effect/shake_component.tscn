@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwfibj43bw0mj"]
+
+[ext_resource type="Script" path="res://components/effect/shake_component.gd" id="1_no3yc"]
+
+[node name="ShakeComponent" type="Node"]
+script = ExtResource("1_no3yc")

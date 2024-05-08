@@ -1,20 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://br37am0h2l2kc"]
+[gd_scene load_steps=5 format=3 uid="uid://br37am0h2l2kc"]
 
 [ext_resource type="PackedScene" uid="uid://csvv76r13o38i" path="res://scenes/player.tscn" id="1_7j4kw"]
-[ext_resource type="PackedScene" uid="uid://crdpmb2sl0o3q" path="res://scenes/isometic_tile_map.tscn" id="1_ejvme"]
+[ext_resource type="PackedScene" uid="uid://bhmye2on8qjdj" path="res://scenes/tile_map.tscn" id="1_bhjkd"]
 [ext_resource type="PackedScene" uid="uid://blxltvb8xes8y" path="res://scenes/enemy.tscn" id="3_01faf"]
+[ext_resource type="Script" path="res://scripts/EnemySpawner.gd" id="4_arra5"]
 
 [node name="Game" type="Node2D"]
 
-[node name="IsometicTileMap" parent="." instance=ExtResource("1_ejvme")]
+[node name="Map" parent="." instance=ExtResource("1_bhjkd")]
+position = Vector2(167.25, -27)
 
 [node name="enemy" parent="." instance=ExtResource("3_01faf")]
-position = Vector2(72, 34)
+position = Vector2(48, -84)
 
 [node name="Player" parent="." instance=ExtResource("1_7j4kw")]
-position = Vector2(0, 1)
+position = Vector2(170, -60)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -15)
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
+
+[node name="EnemySpawner" type="Marker2D" parent="."]
+position = Vector2(170, -60)
+script = ExtResource("4_arra5")
+items = Array[PackedScene]([ExtResource("3_01faf")])

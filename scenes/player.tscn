@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://bixlctt8hwra6" path="res://assets/8-direction character/images/Characters/Civilian1(black)_Idle(Weapon1).png" id="2_wxxqd"]
 [ext_resource type="Texture2D" uid="uid://6hmvi5qbcehq" path="res://assets/8-direction character/images/Characters/Civilian1(black)_Faint.png" id="3_4p6rt"]
 [ext_resource type="Texture2D" uid="uid://kpv14n3f0d4q" path="res://assets/8-direction character/images/Characters/Civilian1(black)_Move(Weapon1).png" id="4_mv2i1"]
-[ext_resource type="PackedScene" uid="uid://cr55mcfp6m8ka" path="res://overlap/hitbox.tscn" id="6_4y415"]
-[ext_resource type="PackedScene" uid="uid://c8rhl1keb567f" path="res://overlap/hurtbox.tscn" id="7_ex61a"]
+[ext_resource type="PackedScene" uid="uid://cr55mcfp6m8ka" path="res://components/interact/hitbox_component.tscn" id="7_f6y4n"]
 [ext_resource type="Script" path="res://scripts/player_attack_hitbox.gd" id="8_uu5wg"]
+[ext_resource type="PackedScene" uid="uid://c8rhl1keb567f" path="res://components/interact/hurtbox_component.tscn" id="9_qluep"]
 
 [sub_resource type="Animation" id="Animation_shs8e"]
 length = 0.001
@@ -1053,7 +1053,7 @@ position = Vector2(0, -1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_hblvn")
 
-[node name="Attack_Hitbox" parent="." instance=ExtResource("6_4y415")]
+[node name="Attack_Hitbox" parent="." instance=ExtResource("7_f6y4n")]
 position = Vector2(13, 0)
 collision_layer = 2
 collision_mask = 5
@@ -1066,7 +1066,7 @@ shape = SubResource("CapsuleShape2D_ytnrx")
 disabled = true
 debug_color = Color(0.808646, 0.403135, 0.250488, 0.42)
 
-[node name="Hurtbox" parent="." instance=ExtResource("7_ex61a")]
+[node name="Hurtbox" parent="." instance=ExtResource("9_qluep")]
 collision_layer = 2
 collision_mask = 4
 

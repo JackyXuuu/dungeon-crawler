@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://cuj0xypqx7ods"]
+
+[ext_resource type="Script" path="res://scripts/EnemyTemplate.gd" id="1_jxhsf"]
+[ext_resource type="Script" path="res://components/stats/stats_component.gd" id="2_f362r"]
+[ext_resource type="Script" path="res://components/effect/shake_component.gd" id="3_f8vro"]
+[ext_resource type="Script" path="res://components/visual/scale_component.gd" id="4_2w08b"]
+[ext_resource type="Script" path="res://components/interact/hitbox_component.gd" id="5_3is1v"]
+[ext_resource type="Script" path="res://components/interact/hurtbox_component.gd" id="6_xhq28"]
+[ext_resource type="Script" path="res://components/effect/flash_component.gd" id="7_fm7dp"]
+
+[node name="EnemyTemplate" type="Node2D"]
+script = ExtResource("1_jxhsf")
+
+[node name="StatsComponent" type="Node" parent="."]
+script = ExtResource("2_f362r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="ShakeComponent" type="Node" parent="."]
+script = ExtResource("3_f8vro")
+
+[node name="ScaleComponent" type="Node" parent="."]
+script = ExtResource("4_2w08b")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+script = ExtResource("5_3is1v")
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+script = ExtResource("6_xhq28")
+
+[node name="FlashComponent" type="Node" parent="."]
+script = ExtResource("7_fm7dp")

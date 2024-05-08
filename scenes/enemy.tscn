@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_4jwkk"]
 [ext_resource type="Texture2D" uid="uid://ds4y8tmrbuokr" path="res://assets/character/NightBorne.png" id="1_17oot"]
 [ext_resource type="PackedScene" uid="uid://b7nknylki6le7" path="res://scenes/enemy_stats.tscn" id="2_hlnr7"]
-[ext_resource type="PackedScene" uid="uid://c8rhl1keb567f" path="res://overlap/hurtbox.tscn" id="3_kwley"]
+[ext_resource type="PackedScene" uid="uid://c8rhl1keb567f" path="res://components/interact/hurtbox_component.tscn" id="3_qkbmi"]
 [ext_resource type="PackedScene" uid="uid://bghi0jdw8j1t7" path="res://scenes/player_detection_zone.tscn" id="4_k52cx"]
-[ext_resource type="PackedScene" uid="uid://cr55mcfp6m8ka" path="res://overlap/hitbox.tscn" id="5_878mt"]
+[ext_resource type="PackedScene" uid="uid://cr55mcfp6m8ka" path="res://components/interact/hitbox_component.tscn" id="5_s3x77"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w4mkk"]
 atlas = ExtResource("1_17oot")
@@ -449,7 +449,7 @@ animation = &"death"
 position = Vector2(4, 9)
 shape = SubResource("CapsuleShape2D_v3nhk")
 
-[node name="Hurtbox" parent="." instance=ExtResource("3_kwley")]
+[node name="Hurtbox" parent="." instance=ExtResource("3_qkbmi")]
 collision_layer = 4
 collision_mask = 2
 HitByPlayer = true
@@ -464,7 +464,7 @@ shape = SubResource("CapsuleShape2D_cgbfh")
 shape = SubResource("CircleShape2D_as26k")
 debug_color = Color(0, 0.694118, 0.701961, 0.027451)
 
-[node name="Hitbox" parent="." instance=ExtResource("5_878mt")]
+[node name="Hitbox" parent="." instance=ExtResource("5_s3x77")]
 collision_layer = 4
 collision_mask = 2
 
