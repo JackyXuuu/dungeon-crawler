@@ -1,0 +1,80 @@
+[gd_scene load_steps=13 format=3 uid="uid://ca5oej2fau3sd"]
+
+[ext_resource type="Script" path="res://scripts/EnemyTemplate.gd" id="1_bkt6a"]
+[ext_resource type="Script" path="res://components/stats/stats_component.gd" id="2_j2tdt"]
+[ext_resource type="SpriteFrames" uid="uid://t8cc6asnnmcq" path="res://assets/character/enemy.tres" id="3_243ny"]
+[ext_resource type="Script" path="res://components/effect/shake_component.gd" id="4_2ki0s"]
+[ext_resource type="Script" path="res://components/visual/scale_component.gd" id="5_3c38b"]
+[ext_resource type="PackedScene" uid="uid://cr55mcfp6m8ka" path="res://components/interact/hitbox_component.tscn" id="6_fhfiu"]
+[ext_resource type="PackedScene" uid="uid://c8rhl1keb567f" path="res://components/interact/hurtbox_component.tscn" id="7_77yqo"]
+[ext_resource type="Script" path="res://components/effect/flash_component.gd" id="8_ipow2"]
+[ext_resource type="PackedScene" uid="uid://c32aj8l1q8vym" path="res://components/stats/health_component.tscn" id="9_topnm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oh5ic"]
+radius = 3.01926
+height = 25.9988
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8wo20"]
+radius = 14.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8vfjq"]
+radius = 17.9834
+height = 43.966
+
+[node name="MeleeEnemy1" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_bkt6a")
+
+[node name="StatsComponent" type="Node" parent="."]
+script = ExtResource("2_j2tdt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("3_243ny")
+animation = &"attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 22)
+rotation = 1.58049
+shape = SubResource("CapsuleShape2D_oh5ic")
+
+[node name="ShakeComponent" type="Node" parent="." node_paths=PackedStringArray("node")]
+script = ExtResource("4_2ki0s")
+node = NodePath("..")
+
+[node name="ScaleComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("5_3c38b")
+sprite = NodePath("../AnimatedSprite2D")
+
+[node name="HitboxComponent" parent="." instance=ExtResource("6_fhfiu")]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(23, 10)
+shape = SubResource("CircleShape2D_8wo20")
+debug_color = Color(0.840643, 0.364583, 0.318232, 0.42)
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("7_77yqo")]
+collision_layer = 4
+collision_mask = 2
+HitByPlayer = true
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" parent="HurtboxComponent" index="0"]
+position = Vector2(-3, 9)
+rotation = 1.58544
+shape = SubResource("CapsuleShape2D_8vfjq")
+debug_color = Color(0.227111, 0.624114, 0.388491, 0.42)
+
+[node name="FlashComponent" type="Node" parent="."]
+script = ExtResource("8_ipow2")
+
+[node name="HealthComponent" parent="." instance=ExtResource("9_topnm")]
+max_health = 3.0
+
+[connection signal="damaged" from="HealthComponent" to="." method="_on_health_component_damaged"]
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+
+[editable path="HitboxComponent"]
+[editable path="HurtboxComponent"]

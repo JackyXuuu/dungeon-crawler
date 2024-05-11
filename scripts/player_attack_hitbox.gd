@@ -1,3 +1,3 @@
-extends "res://scripts/hitbox.gd"
+extends "res://components/interact/hitbox_component.gd"
 
 var knockback_vector = Vector2.ZERO

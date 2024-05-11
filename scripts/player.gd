@@ -23,7 +23,12 @@ var last_mouse_position = Vector2()
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var animated_player = $AnimationPlayer
-@onready var attack_hitbox = $Attack_Hitbox
+@onready var hurtbox_component: Area2D = $HurtboxComponent
+@onready var hitbox_component: Area2D = $HitboxComponent
+@onready var scale_component: ScaleComponent= $ScaleComponent as ScaleComponent
+
+func _ready() -> void:
+	scale_component.tween_scale()
 
 func get_input():
 	input = Input.get_vector("move_left","move_right","move_up","move_down")
@@ -71,7 +76,6 @@ func attack_state(delta):
 	direction_id = wrapi(int(direction_id),0,8)
 	# Update last_direction and knockback_vector to match the attack direction
 	last_direction = Vector2(cos(direction_id * (PI / 4)), sin(direction_id * (PI / 4)))
-	attack_hitbox.knockback_vector = last_direction
 	velocity = Vector2.ZERO
 	animated_player.play(str("attack_", direction_id))
 	
@@ -86,8 +90,3 @@ func _on_animated_sprite_2d_animation_finished():
 
 func _on_animation_player_animation_finished(anim_name):
 	state = MOVE
-
-
-func _on_hurtbox_area_entered(area):
-	HEALTH -= 50
-	print_debug("player hurt")

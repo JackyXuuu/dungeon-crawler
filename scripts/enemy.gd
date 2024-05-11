@@ -54,12 +54,6 @@ func seek_player():
 	if playerDetectionZone.can_see_player():
 		state = CHASE
 
-# connect hurtbox to the enemy
-func _on_hurtbox_area_entered(area):
-	print_debug("enemy hit")
-	stats.health -= area.damage
-	knockback = area.knockback_vector * KNOCKBACK_VAL
-
 func _on_enemy_stats_no_health():
 	queue_free()
 	var enemyDeathEffect = EnemyDeathEffect.instantiate()

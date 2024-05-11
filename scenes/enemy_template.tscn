@@ -1,32 +1,49 @@
-[gd_scene load_steps=8 format=3 uid="uid://cuj0xypqx7ods"]
+[gd_scene load_steps=9 format=3 uid="uid://cuj0xypqx7ods"]
 
 [ext_resource type="Script" path="res://scripts/EnemyTemplate.gd" id="1_jxhsf"]
 [ext_resource type="Script" path="res://components/stats/stats_component.gd" id="2_f362r"]
 [ext_resource type="Script" path="res://components/effect/shake_component.gd" id="3_f8vro"]
 [ext_resource type="Script" path="res://components/visual/scale_component.gd" id="4_2w08b"]
-[ext_resource type="Script" path="res://components/interact/hitbox_component.gd" id="5_3is1v"]
-[ext_resource type="Script" path="res://components/interact/hurtbox_component.gd" id="6_xhq28"]
+[ext_resource type="PackedScene" uid="uid://cr55mcfp6m8ka" path="res://components/interact/hitbox_component.tscn" id="5_xs3a2"]
+[ext_resource type="PackedScene" uid="uid://c8rhl1keb567f" path="res://components/interact/hurtbox_component.tscn" id="6_i3o8n"]
 [ext_resource type="Script" path="res://components/effect/flash_component.gd" id="7_fm7dp"]
+[ext_resource type="PackedScene" uid="uid://c32aj8l1q8vym" path="res://components/stats/health_component.tscn" id="8_brts4"]
 
-[node name="EnemyTemplate" type="Node2D"]
+[node name="EnemyTemplate" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_jxhsf")
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("2_f362r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+animation = &""
 
-[node name="ShakeComponent" type="Node" parent="."]
+[node name="ShakeComponent" type="Node" parent="." node_paths=PackedStringArray("node")]
 script = ExtResource("3_f8vro")
+node = NodePath("..")
 
-[node name="ScaleComponent" type="Node" parent="."]
+[node name="ScaleComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
 script = ExtResource("4_2w08b")
+sprite = NodePath("../AnimatedSprite2D")
 
-[node name="HitboxComponent" type="Area2D" parent="."]
-script = ExtResource("5_3is1v")
+[node name="HitboxComponent" parent="." instance=ExtResource("5_xs3a2")]
+collision_layer = 0
+collision_mask = 2
 
-[node name="HurtboxComponent" type="Area2D" parent="."]
-script = ExtResource("6_xhq28")
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_i3o8n")]
+collision_layer = 4
+collision_mask = 0
+health_component = NodePath("../HealthComponent")
 
 [node name="FlashComponent" type="Node" parent="."]
 script = ExtResource("7_fm7dp")
+
+[node name="HealthComponent" parent="." instance=ExtResource("8_brts4")]
+
+[connection signal="damaged" from="HealthComponent" to="." method="_on_health_component_damaged"]
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+
+[editable path="HitboxComponent"]
+[editable path="HurtboxComponent"]

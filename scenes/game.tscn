@@ -1,17 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://br37am0h2l2kc"]
+[gd_scene load_steps=4 format=3 uid="uid://br37am0h2l2kc"]
 
 [ext_resource type="PackedScene" uid="uid://csvv76r13o38i" path="res://scenes/player.tscn" id="1_7j4kw"]
 [ext_resource type="PackedScene" uid="uid://bhmye2on8qjdj" path="res://scenes/tile_map.tscn" id="1_bhjkd"]
-[ext_resource type="PackedScene" uid="uid://blxltvb8xes8y" path="res://scenes/enemy.tscn" id="3_01faf"]
-[ext_resource type="Script" path="res://scripts/EnemySpawner.gd" id="4_arra5"]
+[ext_resource type="PackedScene" uid="uid://ca5oej2fau3sd" path="res://scenes/enemy_melee1.tscn" id="5_ikkoq"]
 
 [node name="Game" type="Node2D"]
 
 [node name="Map" parent="." instance=ExtResource("1_bhjkd")]
 position = Vector2(167.25, -27)
-
-[node name="enemy" parent="." instance=ExtResource("3_01faf")]
-position = Vector2(48, -84)
 
 [node name="Player" parent="." instance=ExtResource("1_7j4kw")]
 position = Vector2(170, -60)
@@ -21,7 +17,5 @@ position = Vector2(0, -15)
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 
-[node name="EnemySpawner" type="Marker2D" parent="."]
-position = Vector2(170, -60)
-script = ExtResource("4_arra5")
-items = Array[PackedScene]([ExtResource("3_01faf")])
+[node name="MeleeEnemy1" parent="." instance=ExtResource("5_ikkoq")]
+position = Vector2(42, -47)

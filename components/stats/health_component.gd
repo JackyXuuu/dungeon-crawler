@@ -4,17 +4,17 @@ extends Node
 ## Keep track of a health-like numerical statistic.
 
 ## Emitted when health changes.
-signal changed(health: float)
+signal changed(health: int)
 
 ## Emitted when healing takes place.  Passes in the actual amount of healing up
 ## to [member max_health].
-signal healed(amount: float)
+signal healed(amount: int)
 
 ## Emitted when fully healed.
 signal healed_fully()
 
 ## Emitted when damage takes place.  Passes in the actual amount of damage.
-signal damaged(amount: float)
+signal damaged(amount: int)
 
 ## Emitted when health reaches 0.
 signal died()
@@ -32,7 +32,7 @@ signal revived()
 
 ## Apply an amount of healing.  If [i]will_revive[/i] is true, the health can be
 ## from a "dead" state.
-func heal(amount: float, will_revive := false) -> void:
+func heal(amount: int, will_revive := false) -> void:
 	if is_dead() and not will_revive: return
 
 	var old_heath := health
@@ -50,10 +50,11 @@ func heal_fully() -> void:
 	heal(max_health)
 
 ## Apply an amount of damage.
-func damage(amount: float) -> void:
+func damage(amount: int) -> void:
 	var old_heath := health
 
 	health -= amount
+	print(health)
 
 	damaged.emit(old_heath - health)
 	changed.emit(health)

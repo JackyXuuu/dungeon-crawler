@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bghi0jdw8j1t7"]
+[gd_scene load_steps=2 format=3 uid="uid://bkufg0jo0tgh0"]
 
-[ext_resource type="Script" path="res://components/interact/player_detection_zone_component.gd" id="1_hcwbf"]
+[ext_resource type="Script" path="res://components/interact/player_detection_zone_component.gd" id="1_17mno"]
 
-[node name="PlayerDetectionZone" type="Area2D"]
+[node name="PlayerDetectionZoneComponent" type="Area2D"]
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("1_hcwbf")
+script = ExtResource("1_17mno")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
